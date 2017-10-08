@@ -13,10 +13,11 @@ function ToBuyController(ShoppingListCheckOffService) {
 //	console.log(itemsToBuy);
 	itemsToBuy.checkOff = function (itemIndex){
 		ShoppingListCheckOffService.checkOffService(itemIndex);
-	};
+	};itemsToBuy.message =function(){return (itemsToBuy.items=="");}
+		
 //	console.log(itemsToBuy.items.length);
 	itemsToBuy.lengthCheck = ShoppingListCheckOffService.lengthCheckToBuy();	
-	console.log(itemsToBuy.lengthCheck);
+	
 }
 
 
