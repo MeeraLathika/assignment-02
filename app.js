@@ -10,13 +10,15 @@ ToBuyController.$inject = ['ShoppingListCheckOffService'];
 function ToBuyController(ShoppingListCheckOffService) {
   var itemsToBuy = this;
 	itemsToBuy.items = ShoppingListCheckOffService.initToBuy();
-//	console.log(itemsToBuy);
+
 	itemsToBuy.checkOff = function (itemIndex){
 		ShoppingListCheckOffService.checkOffService(itemIndex);
-	};itemsToBuy.message =function(){return (itemsToBuy.items=="");}
-		
-//	console.log(itemsToBuy.items.length);
-	itemsToBuy.lengthCheck = ShoppingListCheckOffService.lengthCheckToBuy();	
+	};
+	itemsToBuy.message = function (){
+		return (itemsToBuy.items=="");
+	};
+
+//	itemsToBuy.lengthCheck = ShoppingListCheckOffService.lengthCheckToBuy();	
 	
 }
 
@@ -25,7 +27,10 @@ AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
 function AlreadyBoughtController(ShoppingListCheckOffService) {
   var itemsBought = this;
 	itemsBought.items = ShoppingListCheckOffService.initBought();
-	itemsBought.listLength = ShoppingListCheckOffService.lengthBought();
+	itemsBought.message = function (){
+		return (itemsBought.items=="");
+	};
+//	itemsBought.listLength = ShoppingListCheckOffService.lengthBought();
 }
 
 
@@ -55,7 +60,6 @@ function ShoppingListCheckOffService() {
 	service.checkOffService = function (itemIndex){
 		itemsBought.push(itemsToBuy[itemIndex]);
 		itemsToBuy.splice(itemIndex,1);
-//		console.log(itemsToBuy.length);
 	}
 	
 	service.initToBuy = function(){
@@ -65,19 +69,18 @@ function ShoppingListCheckOffService() {
 	service.initBought = function(){
 		return itemsBought;
 	};
-	service.lengthCheckToBuy = function(){
-//		console.log(itemsToBuy.length);
-		if(itemsToBuy.length==0)
-			return true;
-		else
-			return false;
-	};
-	service.lengthBought = function(){
-		if(itemsBought.length==0)
-		   return true;
-		else
-			return false;
-	};
+//	service.lengthCheckToBuy = function(){
+//		if(itemsToBuy.length==0)
+//			return true;
+//		else
+//			return false;
+//	};
+//	service.lengthBought = function(){
+//		if(itemsBought.length==0)
+//		   return true;
+//		else
+//			return false;
+//	};
 }
 
 })();
